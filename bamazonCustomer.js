@@ -28,7 +28,7 @@ function displayItems() {
             console.log(res[i].item_id + " | " + res[i].product_name + " | " + res[i].price);
         }
         console.log("-----------------------------------");
-    whatToBuy()
+        whatToBuy()
     });
 }
 // function which prompts the user for what they would like to buy
@@ -65,5 +65,28 @@ function whatToBuy() {
                     return false;
                 }
             }
-        ])};
-        // get the answer of the "quantity" to check if there is enough in inventory
+        ])
+        // compare quantity to buy to stock quantity, update stock
+        .then(function (answer) {
+            var itemToBuy = (answer.item) - 1;
+            var quantityToBuy = parseInt(answer.quantity);
+            if (res.itemToBuy.stock_quantity >= quantityToBuy) {
+                connection.query("UPDATE products SET ? WHERE ?", [{
+                    stock_quantity: res.itemToBuy.stock_quantity - quantityToBuy,
+                { item_id: answer.item }
+                }])
+}
+        });
+    };
+function(error) {
+    if (error) throw err;
+    console.log("You Bought It!");
+    whatToBuy();
+}
+        );
+      }
+        else {
+    // not enough quantity, start over
+    console.log("Your bid was too low. Try again...");
+    whatToBuy();
+}
