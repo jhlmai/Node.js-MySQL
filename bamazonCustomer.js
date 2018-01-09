@@ -67,26 +67,26 @@ function whatToBuy() {
             }
         ])
         // compare quantity to buy to stock quantity, update stock
-        .then(function (answer) {
-            var itemToBuy = (answer.item) - 1;
-            var quantityToBuy = parseInt(answer.quantity);
-            if (res.itemToBuy.stock_quantity >= quantityToBuy) {
-                connection.query("UPDATE products SET ? WHERE ?", [{
-                    stock_quantity: res.itemToBuy.stock_quantity - quantityToBuy,
-                { item_id: answer.item }
-                }])
-}
-        });
-    };
-function(error) {
-    if (error) throw err;
-    console.log("You Bought It!");
-    whatToBuy();
-}
-        );
-      }
-        else {
-    // not enough quantity, start over
-    console.log("Your bid was too low. Try again...");
-    whatToBuy();
+//         .then(function (answer) {
+//             var itemToBuy = (answer.item) - 1;
+//             var quantityToBuy = parseInt(answer.quantity);
+//             if (res.itemToBuy.stock_quantity >= quantityToBuy) {
+//                 connection.query("UPDATE products SET ? WHERE ?", [{
+//                     stock_quantity: res.itemToBuy.stock_quantity - quantityToBuy,
+//                 { item_id: answer.item }
+//                 }])
+// }
+//         });
+//     };
+// function(error) {
+//     if (error) throw err;
+//     console.log("You Bought It!");
+//     whatToBuy();
+// }
+//         );
+//       }
+//         else {
+//     // not enough quantity, start over
+//     console.log("Your bid was too low. Try again...");
+//     whatToBuy();
 }
